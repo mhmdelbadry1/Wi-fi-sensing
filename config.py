@@ -1,4 +1,6 @@
-# config.py
+# ============================================================================
+# config.py - Configuration file
+# ============================================================================
 import os
 import torch
 
@@ -6,29 +8,24 @@ CONFIG = {
     "TASK_PATH": "csi-bench/csi-bench-dataset/FallDetection",
     "TARGET_SUBCARRIERS": 232,
     "TARGET_TIME_SAMPLES": 500,
-    "BATCH_SIZE": 16,  # Increased for better generalization
-    "LEARNING_RATE": 1e-4,  # Conservative learning rate
+    "BATCH_SIZE": 16,
+    "LEARNING_RATE": 1e-4,
     "NUM_EPOCHS": 40,
     "WEIGHT_DECAY": 1e-4,
     "DEVICE": "cuda" if torch.cuda.is_available() else "cpu",
     "PRETRAINED_MODEL": "google/vit-base-patch16-224-in21k",
-
+    
     # Generalization-focused settings
-    "MIXUP_ALPHA": 0.3,  # Data mixing for robustness
-    "LABEL_SMOOTHING": 0.1,  # Prevent overconfidence
-    "DROPOUT_RATE": 0.4,  # Strong regularization
-    "AUGMENTATION_STRENGTH": 0.7,  # Aggressive augmentation
-
+    "MIXUP_ALPHA": 0.3,
+    "LABEL_SMOOTHING": 0.1,
+    "DROPOUT_RATE": 0.4,
+    "AUGMENTATION_STRENGTH": 0.7,
+    
     # Domain adaptation
-    "DOMAIN_ADAPTATION_WEIGHT": 0.15,  # Balance task and domain
+    "DOMAIN_ADAPTATION_WEIGHT": 0.15,
     "ADVERSARIAL_TRAINING": True,
     "DEVICE_AWARE_NORMALIZATION": True,
-
-    # Cross-validation and ensembling
-    "USE_CROSS_VALIDATION": True,
-    "NUM_FOLDS": 5,
-    "ENSEMBLE_MODELS": 3,
-
+    
     # Advanced curriculum learning
     "CURRICULUM_STAGES": [
         {"name": "easy_patterns", "epochs": 6, "sampler": "balanced", "focus": "high_confidence"},
@@ -38,13 +35,22 @@ CONFIG = {
         {"name": "hard_mining", "epochs": 8, "sampler": "hard_mining", "focus": "difficult_cases"},
         {"name": "full_integration", "epochs": 4, "sampler": "balanced", "focus": "final_polish"}
     ],
-
-    # Save and logging
+    
+    # Paths
+    "MODEL_SAVE_PATH": "checkpoints/fall_detection_best.pth",
+    "CHECKPOINT_DIR": "checkpoints",
+    "OUTPUT_DIR": "outputs",
+    "PLOT_DIR": "outputs/plots",
+    "LOG_DIR": "outputs/logs",
+    
+    # Logging
     "SAVE_BEST_MODEL": True,
     "LOG_INTERVAL": 20,
-    "MODEL_SAVE_PATH": "fall_detection_generalizable.pth",
-    "CHECKPOINT_DIR": "checkpoints"
 }
 
+# Create directories
 os.makedirs(CONFIG["CHECKPOINT_DIR"], exist_ok=True)
-os.makedirs("outputs", exist_ok=True)
+os.makedirs(CONFIG["OUTPUT_DIR"], exist_ok=True)
+os.makedirs(CONFIG["PLOT_DIR"], exist_ok=True)
+os.makedirs(CONFIG["LOG_DIR"], exist_ok=True)
+

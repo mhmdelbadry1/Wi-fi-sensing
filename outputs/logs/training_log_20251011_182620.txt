@@ -1,0 +1,33 @@
+
+================================================================================
+GENERALIZABLE FALL DETECTION MODEL
+Production-Ready for ESP32-S3 Deployment
+================================================================================
+Started at: 2025-10-11 18:26:20
+Log file: outputs/logs/training_log_20251011_182620.txt
+
+[SETUP] Setting random seeds...
+[SETUP] Using device: cuda
+[SETUP] GPU: NVIDIA A100-SXM4-80GB
+[SETUP] GPU Memory: 85.29 GB
+
+[1/4] Loading and preparing data...
+✓ Data loading completed in 0:00:06
+
+[2/4] Creating model...
+✓ Model created in 0:00:00
+  Total parameters: 89,996,581
+  Trainable parameters: 89,996,581
+  Model size (approx): 359.99 MB (FP32)
+
+[3/4] Training with curriculum learning...
+
+================================================================================
+GENERALIZATION-FOCUSED CURRICULUM TRAINING
+================================================================================
+
+================================================================================
+STAGE 1/6: EASY_PATTERNS
+Focus: high_confidence
+Epochs: 6
+================================================================================

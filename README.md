@@ -39,7 +39,7 @@ A production-ready setup to train, evaluate, and run a WiFi CSI-based fall detec
 The notebook includes a temporary signed URL that expires. If it fails (403/404), use one of the options below.
 
 - Option A: Temporary signed link (quick, may expire)
-  - wget -O csi-bench.zip "PASTE_THE_SIGNED_URL_HERE"
+  - wget -O csi-bench.zip "PAIGNEDSTE_THE_S_URL_HERE"
   - mkdir -p csi-bench/FallDetection/csi-bench-dataset
   - unzip csi-bench.zip "*/FallDetection/*" -d csi-bench
 
