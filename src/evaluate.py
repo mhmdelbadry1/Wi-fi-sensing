@@ -39,9 +39,15 @@ def evaluate_model(model, test_loader, config, test_name="Test", device=None):
             task_out, _, _, _, uncertainty = model(inputs)
             preds = torch.argmax(task_out, dim=1)
             
-            all_preds.extend(preds.cpu().tolist())
-            all_labels.extend(labels.cpu().tolist())
-            all_uncertainties.extend(uncertainty.cpu().squeeze().tolist())
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+            
+            # Fix: Handle both single values and batches
+            unc_values = uncertainty.cpu().squeeze().tolist()
+            if isinstance(unc_values, float):
+                all_uncertainties.append(unc_values)
+            else:
+                all_uncertainties.extend(unc_values)
     
     # Compute metrics
     out_prefix = os.path.join(config["OUTPUT_DIR"], test_name.lower().replace(' ', '_'))
